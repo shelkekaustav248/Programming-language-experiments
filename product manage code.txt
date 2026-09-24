@@ -1,0 +1,77 @@
+#include <iostream>
+using namespace std;
+
+class Product
+{
+    int productId;
+    string productName;
+    float price;
+    int quantitySold;
+
+public:
+    void getData()
+    {
+        cout << "Enter Product ID: ";
+        cin >> productId;
+
+        cout << "Enter Product Name: ";
+        cin >> productName;
+
+        cout << "Enter Price: ";
+        cin >> price;
+
+        cout << "Enter Quantity Sold: ";
+        cin >> quantitySold;
+    }
+
+    void display()
+    {
+        cout << productId << "\t"
+             << productName << "\t"
+             << price << "\t"
+             << quantitySold << "\t"
+             << price * quantitySold << endl;
+    }
+
+    int getQuantity()
+    {
+        return quantitySold;
+    }
+
+    float getBill()
+    {
+        return price * quantitySold;
+    }
+};
+
+int main()
+{
+    int n, totalQuantity = 0;
+    float totalBill = 0;
+
+    cout << "Enter number of products: ";
+    cin >> n;
+
+    Product p[10];
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << "\nEnter details of Product " << i + 1 << ":\n";
+        p[i].getData();
+    }
+
+    cout << "\nProduct Details\n";
+    cout << "ID\tName\tPrice\tQty\tBill\n";
+
+    for (int i = 0; i < n; i++)
+    {
+        p[i].display();
+        totalQuantity += p[i].getQuantity();
+        totalBill += p[i].getBill();
+    }
+
+    cout << "\nTotal Quantity Sold = " << totalQuantity;
+    cout << "\nTotal Bill = Rs. " << totalBill << endl;
+
+    return 0;
+}
